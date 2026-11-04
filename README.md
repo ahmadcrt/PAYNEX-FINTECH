@@ -30,6 +30,8 @@ SUPABASE_ANON_KEY=your-anon-key
 
 **Never put the `service_role` key in frontend code or commit it.** The anon key is safe in the browser only because RLS is enabled on every table.
 
+4b. Run `schema_v2.sql` after `schema.sql` (column-level permissions, logged admin actions), then deploy the matching `index.html`.
+
 ### Security model
 
 - Users can read only their own profiles, transactions, and goals; admins can read all.
