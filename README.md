@@ -8,13 +8,11 @@ Digital banking and payments **demo** platform. Designed & Developed by Ahmad.
 
 Home (hero, services, security, how it works, FAQ) · Register / login / forgot password with validation · Dashboard (balance, income, expenses, spending overview, recent activity) · Transfers (form → confirmation → status → printable receipt) · Payments (airtime and bills, history, receipts) · Virtual card with freeze/unfreeze (a frozen card declines payments) · Savings goals with progress and history · Transaction history with search and date/type/status filters · Profile, password, notification and security settings · Admin dashboard (stats, suspend users, flag transactions, activity log, reset).
 
-## Run it (no backend)
+## Run it
 
-`index.html` is a single self-contained file. Open it in a browser, or serve it: `npx serve .`
+`index.html` is a single self-contained file that talks to Supabase through `supabase-js` (loaded from a CDN). Serve it over http, e.g. `npx serve .`, or deploy with GitHub Pages. Opening it from `file://` may block auth.
 
-Data is stored in the browser's `localStorage`; passwords are SHA-256 hashed client-side (demo-grade only).
-
-Demo logins: `demo@paynex.demo` / `Demo1234` · admin: `admin@paynex.demo` / `Admin1234`
+Configuration lives at the top of the script (`sb=supabase.createClient(URL, ANON_KEY)`). Use your project's URL and **publishable/anon key only**.
 
 ## Supabase setup (production-style backend)
 
@@ -44,6 +42,6 @@ Register → login → transfer to `amina@paynex.demo` (confirm, receipt prints)
 
 ## Status
 
-The deployed demo uses localStorage. The Supabase schema is ready; the frontend still needs its storage layer replaced with `supabase-js` calls (auth, selects, and the three RPC functions).
+Frontend is wired to Supabase: Auth, RLS-protected tables, and RPC functions for transfers, payments and savings. In Supabase, set **Authentication → URL Configuration → Site URL** to your deployed URL so password-reset emails work, and turn off "Confirm email" if you want instant sign-up while testing.
 
 © 2026 PAYNEX FINTECH · Designed & Developed by Ahmad
